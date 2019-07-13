@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class Game extends Canvas implements Runnable{
 
-    public Handler handler = new Handler();
     public MouseInput mouseInput;
     private BufferedImage imgSpriteSheet;
     private KeyInput keyInput = new KeyInput(this);
@@ -20,19 +19,22 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
     private boolean running;
     private double MS_PER_UPDATE = 16;
+    private Level level;
 
     public Game() {
-        new Window(Globals.WIDTH, Globals.HEIGHT, "Pacman", this);
         this.mouseInput = new MouseInput();
         this.addMouseListener(this.mouseInput);
         this.addMouseMotionListener(this.mouseInput);
         this.addKeyListener(this.keyInput);
         try {
-            imgSpriteSheet = ImageIO.read(getClass().getResource("/sprites.jpg"));
+            imgSpriteSheet = ImageIO.read(getClass().getResource("/spritesheet.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         spriteSheet = new SpriteSheet(imgSpriteSheet);
+        level = new Level(spriteSheet);
+
+        new Window(Globals.WIDTH + 6, Globals.HEIGHT + 29, "Pacman", this);
     }
 
     @Override
@@ -75,7 +77,7 @@ public class Game extends Canvas implements Runnable{
     }
 
     private void tick() {
-        this.handler.tick();
+        this.level.tick();
         this.keyInput.tick();
     }
 
@@ -87,9 +89,11 @@ public class Game extends Canvas implements Runnable{
         }
         Graphics g = bs.getDrawGraphics();
 
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
         g.fillRect(0, 0, Globals.WIDTH, Globals.HEIGHT);
+
         //render
+        level.render(g);
 
         g.dispose();
         bs.show();

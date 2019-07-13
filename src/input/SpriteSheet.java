@@ -8,8 +8,8 @@ public class SpriteSheet {
 
     public SpriteSheet (BufferedImage ss) { this.sprite = ss; }
 
-    public BufferedImage grabImage() {
-        BufferedImage img = null;
+    public BufferedImage grabImage(int x, int y, int w, int h) {
+        BufferedImage img = sprite.getSubimage(x,y,w,h);
         return img;
     }
 
