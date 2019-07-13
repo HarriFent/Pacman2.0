@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable{
         this.addMouseMotionListener(this.mouseInput);
         this.addKeyListener(this.keyInput);
         try {
-            imgSpriteSheet = ImageIO.read(getClass().getResource("/sheet_tanks.png"));
+            imgSpriteSheet = ImageIO.read(getClass().getResource("/sprites.jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
