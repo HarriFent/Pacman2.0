@@ -93,7 +93,7 @@ public class Game extends Canvas implements Runnable{
         g.fillRect(0, 0, Globals.WIDTH, Globals.HEIGHT);
 
         //render
-        level.render(g);
+        level.render(g, spriteSheet);
 
         g.dispose();
         bs.show();

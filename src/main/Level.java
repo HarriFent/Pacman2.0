@@ -1,5 +1,6 @@
 package main;
 
+import GameObjects.Dot;
 import input.SpriteSheet;
 import jdk.nashorn.internal.objects.Global;
 
@@ -26,8 +27,8 @@ public class Level {
     public void LoadLevelFromFile() {
         Scanner input = null;
         try {
-            input = new Scanner(new BufferedReader(new FileReader("level.txt")));
-            int n = 24;
+            input = new Scanner(new BufferedReader(new FileReader("res/level.txt")));
+            int n = 28;
             int m = 31;
             levelArray = new int[m][n];
             while(input.hasNextLine()) {
@@ -35,6 +36,19 @@ public class Level {
                     String[] line = input.nextLine().trim().split(",");
                     for (int j=0; j<line.length; j++) {
                         levelArray[i][j] = Integer.parseInt(line[j]);
+                        switch (levelArray[i][j]) {
+                            case 2:
+                                //DOT
+                                addObject(new Dot(j*16,i*16,false));
+                                break;
+                            case 3:
+                                //POWER
+                                addObject(new Dot(j*16,i*16,true));
+                                break;
+                            default:
+                                break;
+
+                        }
                     }
                 }
             }
@@ -66,11 +80,10 @@ public class Level {
             go.render(g, ss);
         }
 
-        /*
+
         //Displays Grid over map.
-        g.setColor(Color.green);
+        /*g.setColor(Color.green);
         for (int i = 0; i < Globals.WIDTH / 16; i++) g.drawLine(i*16, 0, i*16, Globals.HEIGHT);
-        for (int i = 0; i < Globals.HEIGHT / 16; i++) g.drawLine(0, i*16, Globals.WIDTH, i*16);
-        */
+        for (int i = 0; i < Globals.HEIGHT / 16; i++) g.drawLine(0, i*16, Globals.WIDTH, i*16);*/
     }
 }

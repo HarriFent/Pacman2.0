@@ -10,7 +10,7 @@ public class Dot extends GameObject {
     private boolean power;
 
     public Dot(int x, int y, boolean power) {
-        super(x,y,8,8);
+        super(x,y,16,16);
         this.power = power;
         this.collide = false;
     }
