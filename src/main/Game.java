@@ -14,7 +14,7 @@ public class Game extends Canvas implements Runnable{
 
     public MouseInput mouseInput;
     private BufferedImage imgSpriteSheet;
-    private KeyInput keyInput = new KeyInput(this);
+    private KeyInput keyInput;
     public SpriteSheet spriteSheet;
     private Thread thread;
     private boolean running;
@@ -25,7 +25,6 @@ public class Game extends Canvas implements Runnable{
         this.mouseInput = new MouseInput();
         this.addMouseListener(this.mouseInput);
         this.addMouseMotionListener(this.mouseInput);
-        this.addKeyListener(this.keyInput);
         try {
             imgSpriteSheet = ImageIO.read(getClass().getResource("/spritesheet.png"));
         } catch (IOException ex) {
@@ -33,6 +32,8 @@ public class Game extends Canvas implements Runnable{
         }
         spriteSheet = new SpriteSheet(imgSpriteSheet);
         level = new Level(spriteSheet);
+        keyInput = new KeyInput(level);
+        this.addKeyListener(this.keyInput);
 
         new Window(Globals.WIDTH + 6, Globals.HEIGHT + 29, "Pacman", this);
     }
@@ -49,6 +50,7 @@ public class Game extends Canvas implements Runnable{
             lag += elapsed;
 
             //Input Handler
+
 
             while (lag >= MS_PER_UPDATE)
             {

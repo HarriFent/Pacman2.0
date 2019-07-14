@@ -17,5 +17,16 @@ public abstract class GameObject {
         this.h = h;
     }
 
+<<<<<<< HEAD
+    public int x() {return x;}
+    public int y() {return y;}
+
+    public void setPos(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+=======
+>>>>>>> parent of 199b75f... -Added Command Pattern
     public abstract void render(Graphics g, SpriteSheet ss);
 }
