@@ -9,6 +9,7 @@ public abstract class GameObject {
 
     protected int x, y;
     protected int w, h;
+    protected Globals.ID id;
 
     public GameObject(int x, int y, int w, int h) {
         this.x = x;

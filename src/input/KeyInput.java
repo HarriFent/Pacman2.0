@@ -12,13 +12,6 @@ public class KeyInput extends KeyAdapter {
     private boolean LEFT;
     private boolean RIGHT;
 
-    public enum KEY{
-        KEY_UP,
-        KEY_DOWN,
-        KEY_LEFT,
-        KEY_RIGHT
-    }
-
     private void clearKeys() {
         UP = false;
         DOWN = false;
@@ -26,11 +19,7 @@ public class KeyInput extends KeyAdapter {
         RIGHT = false;
     }
 
-
-    private Game game;
-
-    public KeyInput(Game game) {
-        this.game = game;
+    public KeyInput() {
     }
 
     @Override
@@ -86,10 +75,6 @@ public class KeyInput extends KeyAdapter {
             default:
                 break;
         }*/
-    }
-
-    public void tick() {
-
     }
 
 }

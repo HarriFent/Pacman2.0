@@ -2,6 +2,7 @@ package GameObjects;
 
 import input.SpriteSheet;
 import main.GameObject;
+import main.Globals;
 
 import java.awt.*;
 
@@ -12,6 +13,7 @@ public class Dot extends GameObject {
     public Dot(int x, int y, boolean power) {
         super(x,y,16,16);
         this.power = power;
+        id =  Globals.ID.DOT;
     }
 
     @Override
