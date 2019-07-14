@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class GameObject {
 
-    protected double x, y;
+    protected int x, y;
     protected int w, h;
 
     public GameObject(int x, int y, int w, int h) {
@@ -17,7 +17,6 @@ public abstract class GameObject {
         this.h = h;
     }
 
-<<<<<<< HEAD
     public int x() {return x;}
     public int y() {return y;}
 
@@ -26,7 +25,5 @@ public abstract class GameObject {
         this.y = y;
     }
 
-=======
->>>>>>> parent of 199b75f... -Added Command Pattern
     public abstract void render(Graphics g, SpriteSheet ss);
 }

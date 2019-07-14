@@ -7,8 +7,6 @@ import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter {
 
-<<<<<<< HEAD
-    private final Level level;
     private boolean UP;
     private boolean DOWN;
     private boolean LEFT;
@@ -21,8 +19,6 @@ public class KeyInput extends KeyAdapter {
         KEY_RIGHT
     }
 
-    public KeyInput(Level level) { this.level = level; }
-
     private void clearKeys() {
         UP = false;
         DOWN = false;
@@ -30,31 +26,17 @@ public class KeyInput extends KeyAdapter {
         RIGHT = false;
     }
 
-    public boolean isKeyPressed(KEY key) {
-        switch (key) {
-            case KEY_UP:
-                return UP;
-            case KEY_DOWN:
-                return DOWN;
-            case KEY_LEFT:
-                return LEFT;
-            case KEY_RIGHT:
-                return RIGHT;
-        }
-        return false;
-=======
+
     private Game game;
 
     public KeyInput(Game game) {
         this.game = game;
->>>>>>> parent of 199b75f... -Added Command Pattern
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         switch (key) {
-<<<<<<< HEAD
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 clearKeys();
@@ -75,8 +57,6 @@ public class KeyInput extends KeyAdapter {
                 clearKeys();
                 RIGHT = true;
                 break;
-=======
->>>>>>> parent of 199b75f... -Added Command Pattern
             default:
                 break;
         }

@@ -32,7 +32,7 @@ public class Game extends Canvas implements Runnable{
         }
         spriteSheet = new SpriteSheet(imgSpriteSheet);
         level = new Level(spriteSheet);
-        keyInput = new KeyInput(level);
+        keyInput = new KeyInput(this);
         this.addKeyListener(this.keyInput);
 
         new Window(Globals.WIDTH + 6, Globals.HEIGHT + 29, "Pacman", this);
