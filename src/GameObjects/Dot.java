@@ -12,7 +12,6 @@ public class Dot extends GameObject {
     public Dot(int x, int y, boolean power) {
         super(x,y,16,16);
         this.power = power;
-        this.collide = false;
     }
 
     @Override

@@ -9,7 +9,6 @@ public abstract class GameObject {
 
     protected double x, y;
     protected int w, h;
-    protected boolean collide = true;
 
     public GameObject(int x, int y, int w, int h) {
         this.x = x;

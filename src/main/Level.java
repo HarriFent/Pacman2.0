@@ -1,6 +1,7 @@
 package main;
 
 import GameObjects.Dot;
+import GameObjects.Pacman;
 import input.SpriteSheet;
 import jdk.nashorn.internal.objects.Global;
 
@@ -17,11 +18,12 @@ public class Level {
 
     public LinkedList<GameObject> objects = new LinkedList<>();
     public BufferedImage background;
-    public int[][] levelArray;
+    public int[][] collisionArray;
 
     public Level(SpriteSheet ss) {
         this.background = ss.grabImage(228,0,224,248);
         LoadLevelFromFile();
+        addObject(new Pacman());
     }
 
     public void LoadLevelFromFile() {
@@ -30,13 +32,13 @@ public class Level {
             input = new Scanner(new BufferedReader(new FileReader("res/level.txt")));
             int n = 28;
             int m = 31;
-            levelArray = new int[m][n];
+            collisionArray = new int[m][n];
             while(input.hasNextLine()) {
-                for (int i=0; i<levelArray.length; i++) {
+                for (int i=0; i<collisionArray.length; i++) {
                     String[] line = input.nextLine().trim().split(",");
                     for (int j=0; j<line.length; j++) {
-                        levelArray[i][j] = Integer.parseInt(line[j]);
-                        switch (levelArray[i][j]) {
+                        int val = Integer.parseInt(line[j]);
+                        switch (val) {
                             case 2:
                                 //DOT
                                 addObject(new Dot(j*16,i*16,false));
@@ -46,6 +48,7 @@ public class Level {
                                 addObject(new Dot(j*16,i*16,true));
                                 break;
                             default:
+                                collisionArray[i][j] = val;
                                 break;
 
                         }
