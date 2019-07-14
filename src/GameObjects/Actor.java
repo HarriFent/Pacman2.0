@@ -9,6 +9,7 @@ public abstract class Actor extends GameObject {
         super(x, y, w, h);
     }
 
+    public abstract void tick();
     public abstract void setDirection(Globals.DIR dir);
     public abstract void stopMoving();
 }

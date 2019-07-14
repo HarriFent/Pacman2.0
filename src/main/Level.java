@@ -1,5 +1,6 @@
 package main;
 
+import GameObjects.Actor;
 import GameObjects.Dot;
 import GameObjects.Pacman;
 import input.SpriteSheet;
@@ -60,6 +61,14 @@ public class Level {
         }
     }
 
+    public GameObject getObjectById(Globals.ID id) {
+        for (GameObject object : objects) {
+            if (object.id == id)
+                return object;
+        }
+        return null;
+    }
+
     public void addObject(GameObject object) {
         this.objects.add(object);
     }
@@ -70,10 +79,6 @@ public class Level {
 
     public void clearObjects() {
         objects = new LinkedList<GameObject>();
-    }
-
-    public void tick() {
-
     }
 
     public void render(Graphics g, SpriteSheet ss) {
@@ -88,5 +93,16 @@ public class Level {
         /*g.setColor(Color.green);
         for (int i = 0; i < Globals.WIDTH / 16; i++) g.drawLine(i*16, 0, i*16, Globals.HEIGHT);
         for (int i = 0; i < Globals.HEIGHT / 16; i++) g.drawLine(0, i*16, Globals.WIDTH, i*16);*/
+    }
+
+    public void tick() {
+        for (GameObject object : objects) {
+            switch (object.id) {
+                case PACMAN:
+                    Actor act = (Actor)object;
+                    act.tick();
+                    break;
+            }
+        }
     }
 }

@@ -19,9 +19,9 @@ public class Dot extends GameObject {
     @Override
     public void render(Graphics g, SpriteSheet ss) {
         if (power) {
-            g.drawImage(ss.grabImage(8, 24, 8, 8), (int) x, (int) y, w, h, null);
+            g.drawImage(ss.grabImage(8, 24, 8, 8), x, y, w, h, null);
         }else {
-            g.drawImage(ss.grabImage(8, 8, 8, 8), (int) x, (int) y, w, h, null);
+            g.drawImage(ss.grabImage(8, 8, 8, 8), x, y, w, h, null);
         }
     }
 }

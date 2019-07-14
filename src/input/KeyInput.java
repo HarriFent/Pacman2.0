@@ -1,25 +1,36 @@
 package input;
 
-import main.Game;
+import Commands.Command;
+import Commands.setActorDirection;
+import GameObjects.Actor;
+import main.GameObject;
+import main.Globals;
+import main.Level;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter {
 
-    private boolean UP;
-    private boolean DOWN;
-    private boolean LEFT;
-    private boolean RIGHT;
+    private boolean keys[] = new boolean[4];
+    private Level level;
 
     private void clearKeys() {
-        UP = false;
-        DOWN = false;
-        LEFT = false;
-        RIGHT = false;
+        for (boolean pressed : keys) pressed = false;
     }
 
-    public KeyInput() {
+    public KeyInput(Level level) {
+        this.level = level;
+    }
+
+    public Command handleInput() {
+        GameObject pacman = level.getObjectById(Globals.ID.PACMAN);
+        for (int i = 0; i < 4; i++) {
+            if (keys[i]){
+                return new setActorDirection((Actor)pacman, Globals.DIR.fromInt(i));
+            }
+        }
+        return null;
     }
 
     @Override
@@ -29,22 +40,22 @@ public class KeyInput extends KeyAdapter {
             case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 clearKeys();
-                UP = true;
+                keys[Globals.DIR.toInt(Globals.DIR.UP)] = true;
                 break;
             case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:
                 clearKeys();
-                DOWN = true;
+                keys[Globals.DIR.toInt(Globals.DIR.DOWN)] = true;
                 break;
             case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
                 clearKeys();
-                LEFT = true;
+                keys[Globals.DIR.toInt(Globals.DIR.LEFT)] = true;
                 break;
             case KeyEvent.VK_R:
             case KeyEvent.VK_RIGHT:
                 clearKeys();
-                RIGHT = true;
+                keys[Globals.DIR.toInt(Globals.DIR.RIGHT)] = true;
                 break;
             default:
                 break;

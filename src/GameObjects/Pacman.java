@@ -23,12 +23,31 @@ public class Pacman extends Actor {
     }
 
     @Override
-    public void setDirection(Globals.DIR dir) {
+    public void tick() {
+        x += dx;
+        y += dy;
+    }
 
+    @Override
+    public void setDirection(Globals.DIR dir) {
+        dx = 0; dy = 0;
+        switch (dir) {
+            case UP:
+                dy = -1;
+                break;
+            case DOWN:
+                dy = 1;
+                break;
+            case LEFT:
+                dx = -1;
+                break;
+            case RIGHT:
+                dx = 1;
+        }
     }
 
     @Override
     public void stopMoving() {
-
+        dx = 0; dy = 0;
     }
 }

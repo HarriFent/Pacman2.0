@@ -1,5 +1,6 @@
 package main;
 
+import Commands.Command;
 import input.KeyInput;
 import input.MouseInput;
 import input.SpriteSheet;
@@ -32,7 +33,7 @@ public class Game extends Canvas implements Runnable{
         }
         spriteSheet = new SpriteSheet(imgSpriteSheet);
         level = new Level(spriteSheet);
-        keyInput = new KeyInput(this);
+        keyInput = new KeyInput(level);
         this.addKeyListener(this.keyInput);
 
         new Window(Globals.WIDTH + 6, Globals.HEIGHT + 29, "Pacman", this);
@@ -50,7 +51,10 @@ public class Game extends Canvas implements Runnable{
             lag += elapsed;
 
             //Input Handler
-
+            Command cmd = keyInput.handleInput();
+            if (cmd != null){
+                cmd.execute();
+            }
 
             while (lag >= MS_PER_UPDATE)
             {
@@ -79,8 +83,7 @@ public class Game extends Canvas implements Runnable{
     }
 
     private void tick() {
-        this.level.tick();
-        this.keyInput.tick();
+        level.tick();
     }
 
     private void render() {
